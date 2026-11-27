@@ -1,0 +1,22 @@
+server:
+  port: ${PORT:8080}
+spring:
+  datasource:
+    url: jdbc:h2:mem:vsiaf_demo;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  sql:
+    init:
+      mode: always
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 3MB
+springdoc:
+  swagger-ui:
+    operations-sorter: method
+    tags-sorter: alpha
+    doc-expansion: list
+    display-request-duration: true
+  api-docs:
+    path: /v3/api-docs
