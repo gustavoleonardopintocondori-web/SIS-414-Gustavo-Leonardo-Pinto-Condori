@@ -259,6 +259,7 @@ export class HomePage implements OnInit {
   protected readonly moduleId = signal('activos-fijos');
   protected readonly resourceId = signal('activos-fijos');
   protected readonly records = signal<DataRow[]>([]);
+  protected readonly currentAsset = signal<DataRow | null>(null);
   protected readonly reportAssets = signal<DataRow[]>([]);
   protected readonly busy = signal(false);
   protected readonly saving = signal(false);
@@ -328,6 +329,12 @@ export class HomePage implements OnInit {
     this.api.list<DataRow>(resource.endpoint).subscribe({
       next: (rows) => {
         this.records.set(rows);
+        if (resource.id === 'activos-fijos') {
+          const selectedId = this.currentAsset()?.['id'];
+          this.currentAsset.set(rows.find((row) => row['id'] === selectedId) ?? rows[0] ?? null);
+        } else {
+          this.currentAsset.set(null);
+        }
         this.busy.set(false);
       },
       error: (err: HttpErrorResponse) => {
@@ -346,6 +353,50 @@ export class HomePage implements OnInit {
     } else {
       this.load();
     }
+  }
+
+  protected navigateAsset(direction: 'first' | 'previous' | 'next' | 'last'): void {
+    const currentId = this.currentAsset()?.['id'];
+    let path: string;
+    if (direction === 'first') path = 'activos-fijos/primero';
+    else if (direction === 'last') path = 'activos-fijos/ultimo';
+    else {
+      if (currentId === undefined || currentId === null) {
+        this.error.set('Seleccione primero un activo de la tabla.');
+        return;
+      }
+      path = `activos-fijos/${currentId}/${direction === 'previous' ? 'anterior' : 'siguiente'}`;
+    }
+
+    this.busy.set(true);
+    this.error.set(null);
+    this.api.get<DataRow>(path).subscribe({
+      next: (row) => {
+        this.currentAsset.set(row);
+        this.busy.set(false);
+        this.success.set(`Activo seleccionado: ${this.getCell(row, 'codigo')}.`);
+      },
+      error: (err: HttpErrorResponse) => {
+        this.busy.set(false);
+        this.error.set(this.describeError(err));
+      },
+    });
+  }
+
+  protected showAsset(row: DataRow): void {
+    const id = this.getRecordId(row);
+    if (id === null) return;
+    this.api.get<DataRow>(`activos-fijos/${id}/ficha`).subscribe({
+      next: (asset) => {
+        this.currentAsset.set(asset);
+        this.success.set(`Ficha consultada: ${this.getCell(asset, 'codigo')}.`);
+      },
+      error: (err: HttpErrorResponse) => this.error.set(this.describeError(err)),
+    });
+  }
+
+  protected isCurrentAsset(row: DataRow): boolean {
+    return this.currentAsset()?.['id'] === row['id'] && row['id'] !== undefined;
   }
 
   protected openNew(): void {

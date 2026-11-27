@@ -116,6 +116,17 @@
           </div>
         </div>
 
+        @if (resource.id === 'activos-fijos') {
+          <div class="record-nav">
+            <span>Registro actual: <strong>{{ getCell(currentAsset() ?? {}, 'codigo') }}</strong></span>
+            <div>
+              <button type="button" class="small-action" (click)="navigateAsset('first')">|◀ Primero</button>
+              <button type="button" class="small-action" (click)="navigateAsset('previous')">◀ Anterior</button>
+              <button type="button" class="small-action" (click)="navigateAsset('next')">Siguiente ▶</button>
+              <button type="button" class="small-action" (click)="navigateAsset('last')">Último ▶|</button>
+            </div>
+          </div>
+        }
         @if (busy()) {
           <div class="loading-line">Consultando registros...</div>
         }
@@ -133,7 +144,7 @@
             </thead>
             <tbody>
               @for (row of filteredRecords(); track getRecordId(row)) {
-                <tr>
+                <tr [class.current-row]="resource.id === 'activos-fijos' && isCurrentAsset(row)">
                   <td class="id-column">{{ getCell(row, 'id') }}</td>
                   @for (field of resource.fields; track field.key) {
                     <td>{{ getCell(row, field.key) }}</td>
@@ -141,6 +152,9 @@
                   <td class="row-actions">
                     @if (resource.id === 'respaldos') {
                       <button type="button" class="small-action" (click)="exportBackup(row)">Exportar</button>
+                    }
+                    @if (resource.id === 'activos-fijos') {
+                      <button type="button" class="small-action" (click)="showAsset(row)">Ficha</button>
                     }
                     <button type="button" class="small-action" (click)="openEdit(row)">Editar</button>
                     <button type="button" class="small-action danger-action" (click)="deleteRecord(row)">Eliminar</button>

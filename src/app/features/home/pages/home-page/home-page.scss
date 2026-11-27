@@ -506,3 +506,35 @@ tbody tr:hover {
     display: none !important;
   }
 }
+
+.record-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  border: 1px solid #c1d2e2;
+  background: #f1f7fc;
+  color: #486984;
+  font-size: 11px;
+}
+
+.record-nav > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.current-row {
+  outline: 2px solid #3e80b7;
+  outline-offset: -2px;
+  background: #e0effd !important;
+}
+
+@media (max-width: 760px) {
+  .record-nav {
+    align-items: flex-start;
+  }
+}

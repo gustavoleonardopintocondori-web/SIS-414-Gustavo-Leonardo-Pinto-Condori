@@ -8,6 +8,10 @@ export class DataApiService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = inject(API_BASE_URL);
 
+  get<T = Record<string, unknown>>(path: string): Observable<T> {
+    return this.http.get<T>(`${this.baseUrl}/${path}`);
+  }
+
   list<T = Record<string, unknown>>(resource: string): Observable<T[]> {
     return this.http.get<T[]>(`${this.baseUrl}/${resource}`);
   }
