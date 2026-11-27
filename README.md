@@ -1,30 +1,43 @@
-# vSIAF — réplica visual de interfaz
+# vSIAF — réplica de interfaz y módulos CRUD de demostración
 
-Este proyecto reproduce la interfaz del frontend de referencia proporcionado: pantalla de identificación, banner institucional, menú, ventana «Acerca de» y fondos gráficos originales incluidos en el repositorio de referencia.
+Aplicación Angular con la apariencia visual basada en los recursos y plantillas del frontend de referencia. La pantalla de acceso se conecta a la API de demostración publicada en Render.
 
-## Requisitos
-- Node.js 22.12 o superior
-- npm 10 o superior
+## Ejecutar localmente
 
-## Ejecutar en Visual Studio Code o IntelliJ IDEA
-1. Abrir la carpeta del proyecto.
-2. Ejecutar `npm ci`.
-3. Ejecutar `npm start`.
-4. Abrir http://localhost:4200.
+Requisitos: Node.js 22.22.3 o superior y npm.
 
-## Acceso de demostración
-Para esta compilación visual, el modo demo acepta:
-- Usuario: `admin`
-- Contraseña: `admin`
-
-## Compilar y ejecutar como servicio
 ```bash
 npm ci
-npm run build:demo
-npm run serve:prod
+npm start
 ```
 
-El servidor incluido sirve la compilación Angular y resuelve las rutas de cliente, como `/login` y `/home`.
+Abrir http://localhost:4200.
 
-## Alcance
-La copia conserva las plantillas, estilos y recursos gráficos presentes en el frontend público de referencia. El repositorio de referencia no contiene la implementación de los módulos internos completos ni el backend institucional; por tanto, esta réplica visual no sustituye al sistema institucional ni valida credenciales reales. El acceso demo es solo para visualizar la interfaz.
+## Acceso de demostración
+
+- Usuario: `demo`
+- Contraseña: `demo`
+
+## Módulos conectados
+
+- Activos fijos, transferencias, revalorizaciones, bajas y catálogos relacionados.
+- Grupos contables y auxiliares.
+- Oficinas y responsables.
+- Administradores y entidades.
+- Respaldos: crear, listar, renombrar, exportar en JSON y eliminar.
+- Administración de unidades, con clave compuesta ENTIDAD + UNIDAD.
+- Reporte de activos con exportación CSV e impresión.
+- Comprobación del estado del servicio API.
+
+Las tablas permiten consultar, buscar, actualizar, crear y eliminar registros cuando el endpoint correspondiente está disponible. Las escrituras requieren iniciar sesión.
+
+## Publicación
+
+- Frontend: https://vsiaf-exact-visual.onrender.com
+- API Swagger: https://vsiaf-api-l7ws.onrender.com/swagger-ui/index.html
+
+## Alcance y límites
+
+Esta versión usa la API de demostración. La API emplea una base H2 en memoria, por lo que los datos de prueba pueden perderse cuando el servicio se reinicia o se vuelve a desplegar. Los campos de varios módulos son provisionales y no equivalen al esquema oficial de las 24 tablas del sistema institucional.
+
+No se debe usar con información institucional real. Para una réplica operativa definitiva se necesita el esquema SQL Server/DBF original, sus relaciones, reglas de validación y documentación funcional. Esta aplicación no valida credenciales institucionales ni sustituye al vSIAF oficial.
