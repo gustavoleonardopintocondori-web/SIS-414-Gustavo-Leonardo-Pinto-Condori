@@ -1,10 +1,10 @@
-# vSIAF — réplica de interfaz y módulos CRUD de demostración
+# vSIAF — réplica visual y funcional de demostración
 
-Aplicación Angular con la apariencia visual basada en los recursos y plantillas del frontend de referencia. La pantalla de acceso se conecta a la API de demostración publicada en Render.
+Frontend Angular 22 que conserva la pantalla de acceso, banner, fondos y menú del frontend de referencia. Incluye navegación por módulos, consulta de tablas, formularios de alta/modificación, eliminación, búsqueda, exportación CSV, impresión y navegación de registros.
 
 ## Ejecutar localmente
 
-Requisitos: Node.js 22.22.3 o superior y npm.
+Requisitos: Node.js 22.12 o superior y npm 10 o superior.
 
 ```bash
 npm ci
@@ -18,26 +18,40 @@ Abrir http://localhost:4200.
 - Usuario: `demo`
 - Contraseña: `demo`
 
-## Módulos conectados
+## Módulos disponibles
 
-- Activos fijos, transferencias, revalorizaciones, bajas y catálogos relacionados.
-- Grupos contables y auxiliares.
-- Oficinas y responsables.
-- Administradores y entidades.
-- Respaldos: crear, listar, renombrar, exportar en JSON y eliminar.
-- Administración de unidades, con clave compuesta ENTIDAD + UNIDAD.
-- Reporte de activos con exportación CSV e impresión.
-- Comprobación del estado del servicio API.
+- Activos Fijos: activos, transferencias, revalorizaciones, bajas, estados, meses, motivos de baja y organismos financiadores.
+- Grupos y Auxiliares: grupos contables, auxiliares, cuentas y partidas, objetos de gasto.
+- Oficinas y Responsables: oficinas, responsables y departamentos.
+- Generar Reportes: reportes guardados y generación/exportación.
+- Administradores: usuarios y asignaciones por organización.
+- Respaldos BD: creación y descarga de respaldos de demostración.
+- Administrar Unidad: unidades administrativas, entidades, estructura y configuración.
+- Localización BD: estado del servicio y datos auxiliares.
 
-Las tablas permiten consultar, buscar, actualizar, crear y eliminar registros cuando el endpoint correspondiente está disponible. Las escrituras requieren iniciar sesión.
+## API de demostración
 
-## Publicación
+La aplicación consume:
 
-- Frontend: https://vsiaf-exact-visual.onrender.com
-- API Swagger: https://vsiaf-api-l7ws.onrender.com/swagger-ui/index.html
+`https://vsiaf-api-l7ws.onrender.com/api`
 
-## Alcance y límites
+Swagger: `https://vsiaf-api-l7ws.onrender.com/swagger-ui/index.html`
 
-Esta versión usa la API de demostración. La API emplea una base H2 en memoria, por lo que los datos de prueba pueden perderse cuando el servicio se reinicia o se vuelve a desplegar. Los campos de varios módulos son provisionales y no equivalen al esquema oficial de las 24 tablas del sistema institucional.
+## Importante: alcance actual
 
-No se debe usar con información institucional real. Para una réplica operativa definitiva se necesita el esquema SQL Server/DBF original, sus relaciones, reglas de validación y documentación funcional. Esta aplicación no valida credenciales institucionales ni sustituye al vSIAF oficial.
+La API publicada está en modo DEMO y usa H2 en memoria con almacenamiento temporal. Los registros pueden perderse al reiniciarse o suspenderse el servicio. Los módulos nuevos permiten probar navegación y operaciones CRUD, pero todavía no equivalen a las 24 tablas físicas del SQL Server institucional ni implementan todas las reglas de negocio originales.
+
+Para convertirla en réplica de producción se debe integrar el DDL/backup SQL Server oficial, verificar las claves compuestas y relaciones, y terminar las validaciones y procesos contables contra la documentación institucional. No introducir información institucional ni credenciales reales en esta demostración.
+
+## Compilar
+
+```bash
+npm ci
+npm run build:demo
+npm run serve:prod
+```
+
+## Abrir en los IDE
+
+- Visual Studio Code: abrir la carpeta, instalar la extensión Angular Language Service y ejecutar `npm start` desde Terminal.
+- IntelliJ IDEA: abrir la carpeta como proyecto Node.js, configurar Node 22 y ejecutar el script `start`.
