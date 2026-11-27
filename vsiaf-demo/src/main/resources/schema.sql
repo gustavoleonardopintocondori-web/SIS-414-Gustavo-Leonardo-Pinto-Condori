@@ -8,3 +8,7 @@ CREATE TABLE unidadadmin (
  PRIMARY KEY(ENTIDAD,UNIDAD)
 );
 INSERT INTO unidadadmin VALUES ('DEMO','ADM','Administracion de prueba','Potosi',1);
+INSERT INTO unidadadmin VALUES ('0','pos','admin','Tomas Frias',1);
+INSERT INTO unidadadmin VALUES ('0','UEEA','escuela de la ciudad de Potosi donde hay 500 estudiantes','Potosi',1);
+INSERT INTO unidadadmin VALUES ('0','UETF','ubvicada en la ciudad de Potosi','Potosi',1);
+INSERT INTO unidadadmin VALUES ('0','BIBLI','POTOSi','BIBLIOTECA CENTRAL',1);
