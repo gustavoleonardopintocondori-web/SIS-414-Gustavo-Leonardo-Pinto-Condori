@@ -13,10 +13,12 @@ spring:
       max-file-size: 2MB
       max-request-size: 3MB
 springdoc:
+  use-fqn: true
   swagger-ui:
     operations-sorter: method
     tags-sorter: alpha
     doc-expansion: list
     display-request-duration: true
+    persist-authorization: true
   api-docs:
     path: /v3/api-docs

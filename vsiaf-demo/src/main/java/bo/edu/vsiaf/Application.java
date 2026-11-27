@@ -9,7 +9,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 @SpringBootApplication
 public class Application {
  public static void main(String[] args){SpringApplication.run(Application.class,args);}
- @Bean OpenAPI api(){return new OpenAPI().info(new Info().title("V.S.I.A.F. - Sistema de Activos Fijos").version("Demo 0.3")
- .description("Replica academica independiente. Datos ficticios en H2, se reinician con el servidor. Solo unidadadmin tiene estructura DBF observada; otros campos son propuestas. Login demo/demo para probar escrituras. No usar datos institucionales."))
+ @Bean OpenAPI api(){return new OpenAPI().info(new Info().title("V.S.I.A.F. - Sistema de Activos Fijos").version("Demo 0.4")
+ .description("Réplica académica independiente con datos ficticios temporales. Para registrar: abra Iniciar sesión, pulse Try it out y Execute con demo/demo. Copie token en Authorize, sin escribir Bearer. Después abra POST, pulse Try it out, edite el JSON y Execute. Solo unidadadmin tiene estructura DBF observada; las demás reglas son provisionales. No usar datos institucionales."))
  .components(new Components().addSecuritySchemes("demoBearer",new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")));}
 }
