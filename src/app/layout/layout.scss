@@ -1,0 +1,311 @@
+:host {
+  --blue-900: #003f87;
+  --blue-700: #1a5fa8;
+  --blue-500: #2f6fd0;
+  --sidebar-width: 180px;
+
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: relative;
+  z-index: 3;
+  flex: none;
+  height: 100px;
+  /* Rellena a la derecha del banner cuando la pantalla es más ancha. */
+  /* La imagen se asigna desde la plantilla (ruta relativa) para respetar el base-href. */
+  background: #1c4268 repeat-x left top / auto 100%;
+  box-shadow: 0 2px 6px rgb(0 30 70 / 45%);
+  overflow: hidden;
+}
+
+.header-img {
+  display: block;
+  width: 991px;
+  max-width: none;
+  height: 100px;
+}
+
+.user {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px 4px 5px;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 20px;
+  background: rgb(0 30 70 / 40%);
+  backdrop-filter: blur(3px);
+  color: #fff;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(#6fb0ee, #1a5fa8);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.burger:focus-visible,
+.foot-btn:focus-visible {
+  outline: 2px solid #ffb100;
+  outline-offset: 1px;
+}
+
+.burger {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid rgb(255 255 255 / 40%);
+  border-radius: 6px;
+  background: rgb(0 30 70 / 45%);
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  height: 2px;
+  background: #fff;
+}
+
+/* ---------- Body / Sidebar ---------- */
+.body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  flex: none;
+  padding: 0 8px 8px;
+  border-right: 2px solid var(--blue-700);
+  background: #fff;
+  overflow-y: auto;
+}
+
+.sidebar-title {
+  margin: 22px 0 14px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--blue-900);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Contenedor: 162x36, marco navy y relleno gris (medidas de la captura) */
+.menu-btn {
+  display: block;
+  width: 100%;
+  height: 36px;
+  padding: 6px 2px 5px;
+  border: 1px solid #004080;
+  border-radius: 3px;
+  background: #ececec;
+  cursor: pointer;
+}
+
+/* Botón interior: 156x23, bisel 3D y degradado de 17px */
+.menu-btn-inner {
+  display: block;
+  height: 23px;
+  padding: 2px;
+  border: 1px solid;
+  border-color: #fff #696969 #696969 #fff;
+  background:
+    linear-gradient(
+        180deg,
+        #a1bedc 0 1px,
+        #749dc9 1px 2px,
+        #7ba2cd 2px 3px,
+        #82a9d4 3px 4px,
+        #8bb2db 4px 5px,
+        #95bbe2 5px 6px,
+        #a0c5ec 6px 7px,
+        #abcff3 7px 8px,
+        #b1d5f9 8px 9px,
+        #b9dbfc 9px 10px,
+        #c0deff 10px 11px,
+        #c8e7ff 11px 12px,
+        #ccecfd 12px 13px,
+        #cff1fb 13px 14px,
+        #d0f2fc 14px 15px,
+        #ceefff 15px 16px,
+        #c2e1fd 16px 17px
+      )
+      content-box,
+    #f0f0f0;
+  box-shadow: inset -1px -1px #a0a0a0;
+  color: #000;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.menu-btn:active .menu-btn-inner {
+  border-color: #696969 #fff #fff #696969;
+  box-shadow: inset 1px 1px #a0a0a0;
+}
+
+.menu-btn:focus-visible {
+  outline: none;
+}
+
+.menu-btn:focus-visible .menu-btn-inner {
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+
+.backdrop {
+  display: none;
+}
+
+/* ---------- Main ---------- */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.info {
+  padding: 8px 8px 6px;
+  color: var(--blue-500);
+  line-height: 1.7;
+}
+
+.info div {
+  display: flex;
+}
+
+.info strong {
+  width: 60px;
+  color: #2a5db0;
+}
+
+.info span:first-of-type {
+  width: 56px;
+}
+
+.content {
+  flex: 1;
+  overflow: auto;
+  background: #8fb8d4 center / 100% 100% no-repeat;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+  .burger {
+    display: flex;
+  }
+
+  .user-data {
+    display: none;
+  }
+
+  .sidebar {
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 2;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    box-shadow: 2px 0 8px rgb(0 30 70 / 35%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    background: rgb(0 20 50 / 35%);
+  }
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 6px;
+  height: 58px;
+  padding: 0 14px 6px;
+  background: #0f4581;
+}
+
+/* Botón 3D con degradado oscuro (medidas de la captura: 23px de alto) */
+.foot-btn {
+  height: 23px;
+  padding: 2px;
+  border: 1px solid;
+  border-color: #fff #696969 #696969 #fff;
+  background:
+    linear-gradient(
+        180deg,
+        #6aadc0 0 1px,
+        #64a8bf 1px 2px,
+        #69aabe 2px 3px,
+        #5a9db0 3px 4px,
+        #4f93a6 4px 5px,
+        #418497 5px 6px,
+        #38768b 6px 7px,
+        #2c647b 7px 8px,
+        #00364e 8px 9px,
+        #002d42 9px 13px,
+        #002c41 13px 17px
+      )
+      content-box,
+    #f0f0f0;
+  box-shadow: inset -1px -1px #a0a0a0;
+  color: #fff;
+  font-size: 12px;
+  line-height: 17px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.foot-btn--about {
+  width: 78px;
+}
+
+.foot-btn--exit {
+  width: 42px;
+}
+
+.foot-btn:active {
+  border-color: #696969 #fff #fff #696969;
+  box-shadow: inset 1px 1px #a0a0a0;
+}

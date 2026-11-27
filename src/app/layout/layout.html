@@ -1,0 +1,75 @@
+<header class="header" [style.background-image]="headerBackground">
+  <button
+    type="button"
+    class="burger"
+    aria-label="Abrir menú"
+    [attr.aria-expanded]="sidebarOpen()"
+    (click)="toggleSidebar()"
+  >
+    <span></span><span></span><span></span>
+  </button>
+
+  <img class="header-img" src="assets/images/bannervsiaf.jpg" alt="vSIAF - Sistema de Activos Fijos" />
+
+  @if (session(); as s) {
+    <div class="user">
+      <span class="avatar" aria-hidden="true">{{ s.usuario.charAt(0).toUpperCase() }}</span>
+      <div class="user-data">
+        <div><strong>USUARIO:</strong> {{ s.usuario }}</div>
+        <div><strong>BACKUPS:</strong> {{ s.backups }}</div>
+      </div>
+    </div>
+  }
+</header>
+
+<div class="body">
+  @if (sidebarOpen()) {
+    <div class="backdrop" (click)="toggleSidebar()"></div>
+  }
+
+  <nav class="sidebar" [class.open]="sidebarOpen()" aria-label="Menú principal">
+    <h2 class="sidebar-title">MENU PRINCIPAL</h2>
+
+    <div class="menu">
+      @for (item of menu; track item.label) {
+        <button
+          type="button"
+          class="menu-btn"
+          [class.active]="active() === item.label"
+          [attr.aria-current]="active() === item.label ? 'page' : null"
+          (click)="select(item)"
+        >
+          <span class="menu-btn-inner">{{ item.label.slice(0, item.mnemonic) }}<u>{{ item.label[item.mnemonic] }}</u>{{ item.label.slice(item.mnemonic + 1) }}</span>
+        </button>
+      }
+    </div>
+
+  </nav>
+
+  <div class="main">
+    @if (session(); as s) {
+      <div class="info">
+        @if (s.entidad; as e) {
+          <div><strong>ENTIDAD:</strong><span>{{ e.codigo }}</span><span>{{ e.nombre }}</span></div>
+        }
+        @if (s.unidad; as u) {
+          <div><strong>UNIDAD:</strong><span>{{ u.codigo }}</span><span>{{ u.nombre }}</span></div>
+        }
+      </div>
+    }
+    <section class="content" [style.background-image]="background">
+      <router-outlet />
+    </section>
+
+    <footer class="footer">
+      <button type="button" class="foot-btn foot-btn--about" (click)="aboutOpen.set(true)">
+        A<u>c</u>erca de..
+      </button>
+      <button type="button" class="foot-btn foot-btn--exit" (click)="logout()"><u>S</u>alir</button>
+    </footer>
+  </div>
+</div>
+
+@if (aboutOpen()) {
+  <app-about-dialog (closed)="aboutOpen.set(false)" />
+}

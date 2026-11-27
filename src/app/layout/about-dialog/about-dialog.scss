@@ -1,0 +1,179 @@
+/* Medidas tomadas de la captura: ventana 404x326px */
+:host {
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-size: 12px;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: rgb(0 20 50 / 35%);
+}
+
+/* El ancho crece con el contenido; 404px es el mínimo del diseño original. */
+.about {
+  width: max-content;
+  min-width: 404px;
+  max-width: 100vw;
+  height: 326px;
+  padding: 1px;
+  border: 1px solid;
+  border-color: #fff #a0a0a0 #a0a0a0 #fff;
+  background: #f0f0f0;
+}
+
+.title {
+  height: 21px;
+  padding: 3px 1px 0;
+  margin-bottom: 1px;
+  background: linear-gradient(90deg, #99b4d1, #b8d0e9);
+  color: #000;
+  line-height: 15px;
+}
+
+/* Marco celeste con el contenido blanco y borde negro de 1px */
+.body {
+  height: 300px;
+  padding: 11px 7px 12px 6px;
+  background: #ddeeff;
+}
+
+.content {
+  position: relative;
+  box-sizing: border-box;
+  width: max-content;
+  min-width: 387px;
+  height: 277px;
+  padding-top: 128px;
+  border: 1px solid #000;
+  background: #fff;
+  color: #004080;
+}
+
+/* Logo del Ministerio (141x108) */
+.logo {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 81px);
+  display: block;
+}
+
+.system {
+  position: absolute;
+  top: 110px;
+  left: 50%;
+  transform: translateX(calc(-50% - 12px));
+  margin: 0;
+  font-size: 12px;
+  line-height: 15px;
+  white-space: nowrap;
+}
+
+.group {
+  position: relative;
+  margin-left: 14px;
+  padding-right: 14px;
+}
+
+.group strong {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  line-height: 19px;
+}
+
+.group p {
+  margin: 0 0 0 81px;
+  white-space: nowrap;
+}
+
+.group-dev p {
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.group-rev {
+  margin-top: 10px;
+}
+
+.group-rev p {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.group-rev strong {
+  line-height: 18px;
+}
+
+.version {
+  position: absolute;
+  top: 227px;
+  left: 13px;
+  font-weight: bold;
+  line-height: 13px;
+}
+
+/* Botón predeterminado: borde #646464 + bisel + degradado azul */
+.exit {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  width: 42px;
+  height: 23px;
+  padding: 0;
+  border: 1px solid #646464;
+  background: #fff;
+  cursor: pointer;
+}
+
+.exit span {
+  display: block;
+  height: 100%;
+  padding: 1px;
+  border: 1px solid;
+  border-color: #fff #696969 #696969 #fff;
+  background:
+    linear-gradient(
+        180deg,
+        #a1bedc 0 1px,
+        #749dc9 1px 2px,
+        #78a3ce 2px 3px,
+        #7fa8d4 3px 4px,
+        #8cb3de 4px 5px,
+        #96bbe5 5px 6px,
+        #a0c3eb 6px 7px,
+        #aacdf3 7px 8px,
+        #b3d5fb 8px 10px,
+        #bddefd 10px 11px,
+        #c5e7ff 11px 12px,
+        #cef2fe 12px 13px,
+        #cff4fa 13px 14px,
+        #ccf1f7 14px 15px,
+        #cbeefa 15px 16px,
+        #c2e4fd 16px 17px
+      )
+      content-box,
+    #f0f0f0;
+  box-shadow: inset -1px -1px #a0a0a0;
+  color: #000;
+  line-height: 17px;
+  text-align: center;
+}
+
+.exit:active span {
+  border-color: #696969 #fff #fff #696969;
+  box-shadow: inset 1px 1px #a0a0a0;
+}
+
+.exit:focus-visible {
+  outline: none;
+}
+
+.exit:focus-visible span {
+  outline: 1px dotted #000;
+  outline-offset: -3px;
+}

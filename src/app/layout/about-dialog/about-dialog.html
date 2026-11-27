@@ -1,0 +1,51 @@
+<div class="backdrop" (click)="closed.emit()">
+  <div
+    class="about"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="about-title"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="title" id="about-title">ACERCA DE..</div>
+
+    <div class="body">
+      <div class="content">
+        <img
+          class="logo"
+          src="assets/images/logomefp.jpg"
+          alt="Ministerio de Economía y Finanzas Públicas"
+          width="141"
+          height="108"
+        />
+
+        <h2 class="system">SISTEMA DE INFORMACION DE ACTIVOS FIJOS</h2>
+
+        <div class="group group-dev">
+          <strong>Desarrollado</strong>
+          <p>
+            Dirección General de Sistemas (DGSGIF)<br />
+            Unidad de Administración y Seguridad de Sistemas
+          </p>
+        </div>
+
+        <div class="group group-rev">
+          <strong>Revisado</strong>
+          <p>
+            Dirección General de Contabilidad Fiscal<br />
+            Unidad de Contabilidad y Cuentas Fiscales
+          </p>
+        </div>
+
+        <div class="version">
+          vSIAF version 3.2<br />
+          Copyright © 1999-2012 DGSGIF<br />
+          Todos los derechos Reservados
+        </div>
+
+        <button type="button" class="exit" (click)="closed.emit()">
+          <span><u>S</u>alir</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
